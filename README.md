@@ -10,6 +10,8 @@ Votre mission : **résoudre un crime en interrogeant, non pas des suspects, mais
 Une **base de données** est un système qui permet d'accéder facilement à un ensemble organisé de données, de les manipuler et de les mettre à jour.  
 Comme montré ci-dessous dans le schéma, le **client** (un site web, une application, etc.) envoie une requête à une **API** (un serveur) qui va récupérer et/ou mettre à jour les données associées dans la base de données.
 
+<img  src="./assets/BDD.png" alt="BDD" />
+
 **Maintenant que vous êtes en possession des bases (de données), il est grand temps de se plonger dans notre affaire.**
 
 ## 🕵️ 2. Scénario
@@ -23,7 +25,7 @@ Voici un exemple simple de la modélisation de la base de données relative à n
 
 La base de données contient 5 **tables** :
 - **crime_scene_report** : le rapport d'enquête avec les informations de base (date, type de crime, description, ville).
-- **interview** : les transcripts des interrogatoires
+- **interview** : les transcripts des interrogatoires.
 - **person** : la liste des personnes interrogées et/ou inscrites à la salle avec leur nom et leur adresse. 
 - **get_fit_now_check_in** et **get_fit_now_member** : informations sur les pratiques sportives des suspects avec notamment leur type d'abonnement, les dates auxquelles ils se sont rendus à la salle...
 Ces tables sont liées par des identifiants (`person_id`, `membership_id`...) pour permettre des requêtes complexes.
@@ -49,6 +51,7 @@ Pour vous aider à commencer, voici quelques **requêtes** qui vous seront utile
 
 ### Les types de données courant : 
 **INTEGER** : pour les nombres entiers (ex. âge, identifiant).
+
 **TEXT** : pour du texte (ex. nom, adresse, description).
 Ces types permettent à la base de savoir comment stocker et comparer les données.
 Avec INTEGER, on peut faire des calculs (age > 30). 
@@ -58,130 +61,141 @@ Avec TEXT, on peut faire des recherches (city LIKE "%MAIF City%")
 
 ### Étape 1 : Initialiser les données
 
-Récupérez le fichier nomdufichier
-Copiez/collez son contenu entier dans "Input" sur Online SQL Editor
-Cliquez sur "Run SQL"
-Supprimez tout ce qui se trouve dans "Input"
+Récupérez le fichier nomdufichier.
+
+Copiez/collez son contenu entier dans "Input" sur [Programiz](https://www.programiz.com/sql/online-compiler).
+
+Cliquez sur "Run SQL".
+
+Supprimez tout ce qui se trouve dans "Input".
 
 ### Étape 2 : Lire des données grâce à SQL
 
-1. Récupérez les données du rapport d'enquête
+1. Récupérez les données du rapport d'enquête.
 #### 🔍 Pour rappeler voici les indices qui sont à votre disposition pour commencer l'aventure	 :
 - Le crime a eu lieu le **26 janvier 2026**.
 - Le lieu : **MAIF City**.
 - Le type de crime : **meurtre**
 
 
-<details>
-<summary>Solution</summary>
-
-```sql
-SELECT * 
-FROM crime_scene_report 
-WHERE city = "MAIF City" 
-  AND type = "meurtre" 
-  AND date = 20260126;
-```
-</details>
-
-2. Récupérez l'id du témoin 1
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM crime_scene_report 
+      WHERE city = "MAIF City" 
+        AND type = "meurtre" 
+        AND date = 20260126;
+      ```
+      </details>
 
 
-<details>
-<summary>Solution</summary>
-
-```sql
-SELECT * 
-FROM person 
-WHERE address_street = "Northwestern Dr" 
-ORDER BY address_number DESC;
-```
-</details>
+2. Récupérez l'id du témoin 1.
 
 
-3. Interrogez le témoin 1
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM person 
+      WHERE address_street = "Northwestern Dr" 
+      ORDER BY address_number DESC;
+      ```
+      </details>
 
 
-<details>
-<summary>Solution</summary>
 
-```sql
-SELECT * 
-FROM interview 
-WHERE person_id = 14887;
-```
-</details>
+3. Interrogez le témoin 1.
 
 
-4. Récupérez l'id du témoin 2 (Annabel)
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM interview 
+      WHERE person_id = 14887;
+      ```
+      </details>
 
 
-<details>
-<summary>Solution</summary>
 
-```sql
-SELECT * 
-FROM person 
-WHERE name LIKE "Annabel%" 
-  AND address_street = "Franklin Ave";
-```
-</details>
+4. Récupérez l'id du témoin 2 (Annabel).
 
 
-5. Interrogez le témoin 2 (Annabel)
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM person 
+      WHERE name LIKE "Annabel%" 
+        AND address_street = "Franklin Ave";
+      ```
+      </details>
 
 
-<details>
-<summary>Solution</summary>
 
-```sql
-SELECT * 
-FROM interview 
-WHERE person_id = 16371;
-```
-</details>
+5. Interrogez le témoin 2 (Annabel).
 
 
-6. Allez à la salle de gym pour creuser les pistes évoquées par les témoins
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM interview 
+      WHERE person_id = 16371;
+      ```
+      </details>
 
 
-<details>
-<summary>Solution</summary>
 
-```sql
-SELECT * 
-FROM get_fit_now_member 
-JOIN get_fit_now_check_in ON id = membership_id 
-WHERE check_in_date = 20260109 
-  AND membership_status = "gold" 
-  AND id LIKE "%48Z%";
-```
-</details>
+6. Allez à la salle de gym pour creuser les pistes évoquées par les témoins.
 
 
-### Étape 3 : Vérifier votre réponse
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      SELECT * 
+      FROM get_fit_now_member 
+      JOIN get_fit_now_check_in ON id = membership_id 
+      WHERE check_in_date = 20260109 
+        AND membership_status = "gold" 
+        AND id LIKE "%48Z%";
+      ```
+      </details>
+
+
+
+### Étape 3 : Vérifier votre réponse.
 
 Réalisez une requête d'insert avec le nom du coupable puis vérifiez votre solution
 INSERT INTO solution VALUES (1, 'Insérer le nom de votre suspect ici');        
 SELECT value FROM solution;
 
 
-<details>
-<summary>Solution</summary>
+      <details>
+      <summary>Solution</summary>
+      
+      ```sql
+      INSERT INTO solution VALUES (1, "Jeremy Bowers");
+      SELECT value FROM solution;
+      ```
+      </details>
 
-```sql
-INSERT INTO solution VALUES (1, "Jeremy Bowers");
-SELECT value FROM solution;
-```
-</details>
 
 
 ### Résumé
 À la fin de l'atelier, chaque participant aura :
 
-Lu et compris du SQL simple
-Découvert du SQL plus complexe
-Ajouté une nouvelle donnée en SQL
+- ✅ Lu et compris du SQL simple
+- ✅ Découvert du SQL plus complexe
+- ✅ Ajouté une nouvelle donnée en SQL
+
 
 ## 🏁 6. Remerciements
 Merci d'avoir participé à cet atelier et d'avoir joué le jeu jusqu'au bout !  **Le rideau tombe sur MAIF City**… Mais votre voyage avec SQL ne fait que commencer. Chaque base cache ses secrets, et vous avez désormais les clés pour les révéler.
