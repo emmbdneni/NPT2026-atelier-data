@@ -1,5 +1,5 @@
 
-# MaifStery - Murder Mystery SQL 🕵️‍♀️
+# Atelier Data - MaifStery - Murder Mystery SQL 🕵️‍♀️
 
 <img  src="./assets/1.png" alt="Header" />
 
@@ -65,7 +65,7 @@ Supprimez tout ce qui se trouve dans "Input"
 
 ### Étape 2 : Lire des données grâce à SQL
 
-Récupérez les données du rapport d'enquête
+1. Récupérez les données du rapport d'enquête
 #### 🔍 Pour rappeler voici les indices qui sont à votre disposition pour commencer l'aventure	 :
 - Le crime a eu lieu le **26 janvier 2026**.
 - Le lieu : **MAIF City**.
@@ -81,7 +81,8 @@ FROM crime_scene_report
 WHERE city = "MAIF City" 
   AND type = "meurtre" 
   AND date = 20260126;
-
+```
+</details>
 
 2. Récupérez l'id du témoin 1
 
@@ -94,6 +95,8 @@ SELECT *
 FROM person 
 WHERE address_street = "Northwestern Dr" 
 ORDER BY address_number DESC;
+```
+</details>
 
 
 3. Interrogez le témoin 1
@@ -106,6 +109,8 @@ ORDER BY address_number DESC;
 SELECT * 
 FROM interview 
 WHERE person_id = 14887;
+```
+</details>
 
 
 4. Récupérez l'id du témoin 2 (Annabel)
@@ -119,6 +124,8 @@ SELECT *
 FROM person 
 WHERE name LIKE "Annabel%" 
   AND address_street = "Franklin Ave";
+```
+</details>
 
 
 5. Interrogez le témoin 2 (Annabel)
@@ -131,6 +138,8 @@ WHERE name LIKE "Annabel%"
 SELECT * 
 FROM interview 
 WHERE person_id = 16371;
+```
+</details>
 
 
 6. Allez à la salle de gym pour creuser les pistes évoquées par les témoins
@@ -146,6 +155,8 @@ JOIN get_fit_now_check_in ON id = membership_id
 WHERE check_in_date = 20260109 
   AND membership_status = "gold" 
   AND id LIKE "%48Z%";
+```
+</details>
 
 
 ### Étape 3 : Vérifier votre réponse
@@ -161,6 +172,8 @@ SELECT value FROM solution;
 ```sql
 INSERT INTO solution VALUES (1, "Jeremy Bowers");
 SELECT value FROM solution;
+```
+</details>
 
 
 ### Résumé
