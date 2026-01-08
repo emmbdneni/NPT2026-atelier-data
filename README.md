@@ -1,6 +1,8 @@
 
 # MaifStery - Murder Mystery SQL 🕵️‍♀️
 
+<img  src="./assets/1.png" alt="Header" />
+
 Bienvenue dans cet atelier qui vous permettra découvrir les bases de données SQL à travers une enquête policière !  
 Votre mission : **résoudre un crime en interrogeant, non pas des suspects, mais une base de données**.
 
@@ -17,6 +19,8 @@ La victime travaillait dans une grande compagnie d’assurance et enquêtait sur
 ## 🗺 3. Schéma de la base de données
 Voici un exemple simple de la modélisation de la base de données relative à notre enquête.  
 
+<img  src="./assets/2.png" alt="Modélisation BDD" />
+
 La base de données contient 5 **tables** :
 - **crime_scene_report** : le rapport d'enquête avec les informations de base (date, type de crime, description, ville).
 - **interview** : les transcripts des interrogatoires
@@ -27,6 +31,9 @@ Ces tables sont liées par des identifiants (`person_id`, `membership_id`...) po
 Ces tables contiennent également plusieurs **colonnes** dans lesquelles on va venir regrouper l'information. 
 
 Voici quelques exemples du contenu des tables et de leurs colonnes sous forme de tableaux : 
+<img  src="./assets/3.png" alt="Contenu des tables 1" />
+
+<img  src="./assets/4.png" alt="Contenu des tables 2" />
 
 
 ## 🛠 4. Commandes SQL utiles
@@ -64,39 +71,82 @@ Récupérez les données du rapport d'enquête
 - Le lieu : **MAIF City**.
 - Le type de crime : **meurtre**
 
-Solution
 
-SELECT * FROM crime_scene_report WHERE city = "MAIF City" AND type = "meurtre" AND date = 20260126
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM crime_scene_report 
+WHERE city = "MAIF City" 
+  AND type = "meurtre" 
+  AND date = 20260126;
+
 
 2. Récupérez l'id du témoin 1
 
-Solution
 
-SELECT * FROM person WHERE address_street = "Northwestern Dr" ORDER BY address_number DESC
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM person 
+WHERE address_street = "Northwestern Dr" 
+ORDER BY address_number DESC;
+
 
 3. Interrogez le témoin 1
 
-Solution
 
-SELECT * FROM interview WHERE person_id = 14887
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM interview 
+WHERE person_id = 14887;
+
 
 4. Récupérez l'id du témoin 2 (Annabel)
 
-Solution
 
-SELECT * FROM person WHERE name LIKE "Annabel%" AND address_street= "Franklin Ave"
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM person 
+WHERE name LIKE "Annabel%" 
+  AND address_street = "Franklin Ave";
+
 
 5. Interrogez le témoin 2 (Annabel)
 
-Solution
 
-SELECT * FROM interview WHERE person_id = 16371
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM interview 
+WHERE person_id = 16371;
+
 
 6. Allez à la salle de gym pour creuser les pistes évoquées par les témoins
 
-Solution
 
-SELECT * FROM get_fit_now_member JOIN get_fit_now_check_in on id = membership_id WHERE check_in_date = 20260109 AND membership_status = "gold" AND id LIKE "%48Z%"
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM get_fit_now_member 
+JOIN get_fit_now_check_in ON id = membership_id 
+WHERE check_in_date = 20260109 
+  AND membership_status = "gold" 
+  AND id LIKE "%48Z%";
+
 
 ### Étape 3 : Vérifier votre réponse
 
@@ -104,10 +154,14 @@ Réalisez une requête d'insert avec le nom du coupable puis vérifiez votre sol
 INSERT INTO solution VALUES (1, 'Insérer le nom de votre suspect ici');        
 SELECT value FROM solution;
 
-Solution
 
+<details>
+<summary>Solution</summary>
+
+```sql
 INSERT INTO solution VALUES (1, "Jeremy Bowers");
 SELECT value FROM solution;
+
 
 ### Résumé
 À la fin de l'atelier, chaque participant aura :
