@@ -61,7 +61,7 @@ Avec TEXT, on peut faire des recherches (city LIKE "%MAIF City%")
 
 ### Étape 1 : Initialiser les données
 
-Récupérez le fichier de création de la [BDD](./contenu-bdd.txt.)
+Récupérez le fichier de création de la [BDD](./contenu-bdd.txt).
 
 Copiez/collez son contenu entier dans "Input" sur [Programiz](https://www.programiz.com/sql/online-compiler).
 
@@ -78,96 +78,97 @@ Supprimez tout ce qui se trouve dans "Input".
 - Le type de crime : **meurtre**
 
 
-      <details>
-      <summary>Solution</summary>
-      
-      ```sql
-      SELECT * 
-      FROM crime_scene_report 
-      WHERE city = "MAIF City" 
-        AND type = "meurtre" 
-        AND date = 20260126;
-      ```
-      </details>
+<details>
+<summary>Solution</summary>
+
+```sql
+SELECT * 
+FROM crime_scene_report 
+WHERE city = "MAIF City" 
+  AND type = "meurtre" 
+  AND date = 20260126;
+```
+</details>
+
 
 
 2. Récupérez l'id du témoin 1.
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      SELECT * 
-      FROM person 
-      WHERE address_street = "Northwestern Dr" 
-      ORDER BY address_number DESC;
-      ```
-      </details>
+```sql
+SELECT * 
+FROM person 
+WHERE address_street = "Northwestern Dr" 
+ORDER BY address_number DESC;
+```
+</details>
 
 
 
 3. Interrogez le témoin 1.
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      SELECT * 
-      FROM interview 
-      WHERE person_id = 14887;
-      ```
-      </details>
+```sql
+SELECT * 
+FROM interview 
+WHERE person_id = 14887;
+```
+</details>
 
 
 
 4. Récupérez l'id du témoin 2 (Annabel).
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      SELECT * 
-      FROM person 
-      WHERE name LIKE "Annabel%" 
-        AND address_street = "Franklin Ave";
-      ```
-      </details>
+```sql
+SELECT * 
+FROM person 
+WHERE name LIKE "Annabel%" 
+AND address_street = "Franklin Ave";
+```
+</details>
 
 
 
 5. Interrogez le témoin 2 (Annabel).
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      SELECT * 
-      FROM interview 
-      WHERE person_id = 16371;
-      ```
-      </details>
+```sql
+SELECT * 
+FROM interview 
+WHERE person_id = 16371;
+```
+</details>
 
 
 
 6. Allez à la salle de gym pour creuser les pistes évoquées par les témoins.
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      SELECT * 
-      FROM get_fit_now_member 
-      JOIN get_fit_now_check_in ON id = membership_id 
-      WHERE check_in_date = 20260109 
-        AND membership_status = "gold" 
-        AND id LIKE "%48Z%";
-      ```
-      </details>
+```sql
+SELECT * 
+FROM get_fit_now_member 
+JOIN get_fit_now_check_in ON id = membership_id 
+WHERE check_in_date = 20260109 
+AND membership_status = "gold" 
+AND id LIKE "%48Z%";
+```
+</details>
 
 
 
@@ -178,23 +179,25 @@ INSERT INTO solution VALUES (1, 'Insérer le nom de votre suspect ici');
 SELECT value FROM solution;
 
 
-      <details>
-      <summary>Solution</summary>
+<details>
+<summary>Solution</summary>
       
-      ```sql
-      INSERT INTO solution VALUES (1, "Jeremy Bowers");
-      SELECT value FROM solution;
-      ```
-      </details>
+```sql
+INSERT INTO solution VALUES (1, "Jeremy Bowers");
+SELECT value FROM solution;
+```
+</details>
 
 
 
 ### Résumé
 À la fin de l'atelier, chaque participant aura :
 
-- ✅ Lu et compris du SQL simple
-- ✅ Découvert du SQL plus complexe
-- ✅ Ajouté une nouvelle donnée en SQL
+✅ Lu et compris du SQL simple
+
+✅ Découvert du SQL plus complexe
+
+✅ Ajouté une nouvelle donnée en SQL
 
 
 ## 🏁 6. Remerciements
