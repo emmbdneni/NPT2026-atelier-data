@@ -61,7 +61,7 @@ Avec TEXT, on peut faire des recherches (city LIKE "%MAIF City%")
 
 ### Étape 1 : Initialiser les données
 
-Récupérez le fichier nomdufichier.
+Récupérez le fichier de création de la [BDD](./contenu-bdd.txt.)
 
 Copiez/collez son contenu entier dans "Input" sur [Programiz](https://www.programiz.com/sql/online-compiler).
 
