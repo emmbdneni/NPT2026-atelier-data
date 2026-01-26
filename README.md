@@ -49,7 +49,7 @@ Pour vous aider à commencer, voici quelques **requêtes** qui vous seront utile
 | `ORDER BY`    | Trie les résultats (ASC ou DESC) | `SELECT name, address_number, address_name FROM person ORDER BY name DESC;` |
 | `JOIN`        | Relie deux tables via une clé | `SELECT * FROM person JOIN get_fit_now_member ON person.id = get_fit_now_member.id;` |
 
-### Les types de données courant : 
+### Les types de données courants : 
 **INTEGER** : pour les nombres entiers (ex. âge, identifiant).
 
 **TEXT** : pour du texte (ex. nom, adresse, description).
